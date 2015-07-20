@@ -34,11 +34,11 @@ public class EnderecoService implements Serializable {
 	public String incluir(Endereco endereco) {
 		
 		try {
-			if (isNotNull(endereco.getRua()) && isNotNull(endereco.getBairro()) && isNotNull(endereco.getCidade())
+			if (isNotNull(endereco.getRua()) && (endereco.getNumero() > 0) && isNotNull(endereco.getCidade())
 					&& isNotNull(endereco.getEstado()) && isNotNull(endereco.getCep())) {
 				dao.salvar(endereco);
 			} else {
-				return semSucesso + "Todos os campos são obrigatórios.";
+				return semSucesso + "Os campos rua, número, cep, cidade e estado são obrigatórios.";
 			}
 		} catch (Exception e) {
 			return semSucesso + e.getMessage();
